@@ -81,7 +81,6 @@ namespace Rocket.Web.Controllers.UserRole
                 return BadRequest("The permission not exists");
             }
             
-
             _permissionService.Delete(permission, user);
             return new StatusCodeResult(HttpStatusCode.Accepted, Request);
         }

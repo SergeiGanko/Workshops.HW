@@ -125,6 +125,7 @@ namespace Rocket.Web.Controllers.UserPayments
                 //Log error
             }
         }
+
         private class IPNContext
         {
             public HttpRequestMessage IPNRequest { get; set; }

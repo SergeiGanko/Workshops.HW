@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.Identity;
-using Rocket.BL.Common.Models.User;
 using Rocket.BL.Common.Services.User;
 using Rocket.DAL.Common.DbModels.DbPersonalArea;
 using Rocket.DAL.Common.DbModels.User;
@@ -12,7 +11,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Rocket.BL.Services.User

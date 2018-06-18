@@ -31,9 +31,13 @@ namespace Rocket.BL.Services.PersonalArea
             {
                 throw new ValidationException(Resources.EmailDuplicate);
             }
+
             if (!Regex.IsMatch(email.Name, _pattern, RegexOptions.IgnoreCase))
+            {
                 throw new ValidationException(Resources.WrongEmailFormat);
-             var emails = new DbEmail() { Name = email.Name, DbUserProfileId = id };
+            }
+                
+            var emails = new DbEmail() { Name = email.Name, DbUserProfileId = id };
             _unitOfWork.EmailRepository.Insert(emails);
             _unitOfWork.SaveChanges();
             return emails.Id;

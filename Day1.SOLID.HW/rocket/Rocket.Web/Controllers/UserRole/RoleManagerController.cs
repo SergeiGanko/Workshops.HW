@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Rocket.BL.Common.Services;
-using Rocket.BL.Services.UserServices;
 using Swashbuckle.Swagger.Annotations;
 
 namespace Rocket.Web.Controllers.UserRole
@@ -36,7 +35,7 @@ namespace Rocket.Web.Controllers.UserRole
         public async Task<IHttpActionResult> RemoveFromRole(string userId, string roleId)
         {
             var removeResult = await _roleManager.RemoveFromRole(userId, roleId);
-            return removeResult.Succeeded ?  Ok() : (IHttpActionResult)NotFound();
+            return removeResult.Succeeded ? Ok() : (IHttpActionResult)NotFound();
         }
 
         [HttpGet]

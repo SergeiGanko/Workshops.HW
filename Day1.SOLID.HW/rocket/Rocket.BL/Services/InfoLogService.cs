@@ -32,17 +32,17 @@ namespace Rocket.BL.Services
             var logRows = new StringBuilder();
 
             // прочитать N байт с файла
-            using (var fStream = new FileInfo(path).Open(FileMode.Open, FileAccess.Read))
+            using (var fileStream = new FileInfo(path).Open(FileMode.Open, FileAccess.Read))
             {
-                if (fStream.Length <= СountBytes)
+                if (fileStream.Length <= СountBytes)
                 {
-                    var readed = fStream.Read(buffer, 0, buffer.Length);
+                    var readed = fileStream.Read(buffer, 0, buffer.Length);
                     logRows.Insert(0, Encoding.UTF8.GetString(buffer, 0, readed));
                 }
                 else
                 {
                     // рассчитываем точку входа в последний буфер с учетом кратности 
-                    var multiply = fStream.Length % СountBytes;
+                    var multiply = fileStream.Length % СountBytes;
                     var position = multiply * СountBytes;
 
                     // количество полных комплит-строк
@@ -50,8 +50,8 @@ namespace Rocket.BL.Services
 
                     do
                     {
-                        fStream.Position = position;
-                        var readed = fStream.Read(buffer, 0, СountBytes);
+                        fileStream.Position = position;
+                        var readed = fileStream.Read(buffer, 0, СountBytes);
                         var readedStr = Encoding.UTF8.GetString(buffer, 0, readed);
 
                         // подсчёт строк
