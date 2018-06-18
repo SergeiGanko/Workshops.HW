@@ -232,8 +232,6 @@ namespace Rocket.Web.Controllers.User
             _userManagementService.DeleteUser(user.Id);
 
             return Ok($"User with id = {user.Id} successfully deleted");
-
-            throw new NotImplementedException();
         }
     }
 }
