@@ -10,10 +10,13 @@ using Rocket.BL.Common.Models.UserRoles;
 using Rocket.DAL.Common.DbModels.Identity;
 using Rocket.DAL.Common.UoW;
 using Rocket.DAL.Identity;
+using Rocket.BL.Common.Services;
 
 namespace Rocket.BL.Services.UserServices
 {
-    public class RoleService : BaseService
+    using System.Linq.Expressions;
+
+    public class RoleService : BaseService, IRoleService
     {
         private readonly ILog _logger;
         private readonly RockeRoleManager _roleManager;
@@ -41,13 +44,13 @@ namespace Rocket.BL.Services.UserServices
             return _roleManager.Roles.Include(t => t.Permissions).ToArray().Select(Mapper.Map<Role>);
         }
 
-        //public IEnumerable<Role> Get(
-        //    Expression<Func<DbRole, bool>> filter = null, 
-        //    Func<IQueryable<DbRole>, IOrderedQueryable<DbRole>> orderBy = null, 
-        //    string includeProperties = "")
-        //{
-        //    return _unitOfWork.RoleRepository.Get(filter, orderBy, includeProperties).Select(Mapper.Map<Role>);
-        //}
+        public IEnumerable<Role> Get(
+            Expression<Func<DbRole, bool>> filter = null,
+            Func<IQueryable<DbRole>, IOrderedQueryable<DbRole>> orderBy = null,
+            string includeProperties = "")
+        {
+            return _unitOfWork.RoleRepository.Get(filter, orderBy, includeProperties).Select(Mapper.Map<Role>);
+        }
 
         public async Task<Role> GetById(string roleId)
         {

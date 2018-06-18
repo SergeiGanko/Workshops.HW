@@ -4,16 +4,18 @@ using System.Linq;
 using System.Linq.Expressions;
 using Rocket.BL.Common.Models.UserRoles;
 using Rocket.DAL.Common.DbModels.Identity;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace Rocket.BL.Common.Services
 {
     public interface IRoleService : IDisposable
     {
         /// <summary>
-        /// Удаляем модель по Id
+        /// Получаем список всех ролей
         /// </summary>
-        /// <param name="id"> Идентификатор </param>
-        void Delete(string id);
+        /// <returns></returns>
+        IEnumerable<Role> GetAllRoles();
 
         /// <summary>
         /// Получаем список ролей с фильтрами и сортировкой
@@ -21,7 +23,7 @@ namespace Rocket.BL.Common.Services
         /// <param name="filter"> фильтр </param>
         /// <param name="orderBy"> слортировка </param>
         /// <param name="includeProperties"> доп проперти </param>
-        /// <returns> list </returns>
+        /// <returns> IEnumerable{Role} </returns>
         IEnumerable<Role> Get(
             Expression<Func<DbRole, bool>> filter = null, 
             Func<IQueryable<DbRole>, IOrderedQueryable<DbRole>> orderBy = null, 
@@ -32,25 +34,35 @@ namespace Rocket.BL.Common.Services
         /// </summary>
         /// <param name="id"> Идентификатор </param>
         /// <returns>Role</returns>
-        Role GetById(string id);
-
-        /// <summary>
-        /// Добавляем новую роль
-        /// </summary>
-        /// <param name="role"> Роль </param>
-        void Insert(Role role);
+        Task<Role> GetById(string id);
 
         /// <summary>
         /// Проверка существования данной роли
         /// </summary>
         /// <param name="filter"> фильтр </param>
-        /// <returns> bool </returns>
-        bool RoleIsExists(Expression<Func<Role, bool>> filter);
+        /// <returns> Task{bool} </returns>
+        Task<bool> RoleIsExists(string filter);
+
+        /// <summary>
+        /// Добавляем новую роль
+        /// </summary>
+        /// <param name="role"> Роль </param>
+        /// <returns> Task{IdentityResult} </returns>
+        Task<IdentityResult> Insert(Role role);
 
         /// <summary>
         /// Обновляем текущую роль
         /// </summary>
-        /// <param name="role"> Роль </param>
-        void Update(Role role);
+        /// <param name="roleId">The role identifier.</param>
+        /// <param name="roleName">Name of the role.</param>
+        /// <returns> Task{IdentityResult} </returns>
+        Task<IdentityResult> Update(string roleId, string roleName);
+
+        /// <summary>
+        /// Удаляем модель по Id
+        /// </summary>
+        /// <param name="id"> Идентификатор </param>
+        /// <returns>Task{IdentityResult}</returns>
+        Task<IdentityResult> Delete(string id);
     }
 }

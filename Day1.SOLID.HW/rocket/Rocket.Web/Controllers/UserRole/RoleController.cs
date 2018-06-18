@@ -1,20 +1,20 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Rocket.BL.Common.Models.UserRoles;
-using Rocket.BL.Services.UserServices;
 using Swashbuckle.Swagger.Annotations;
+using Rocket.BL.Common.Services;
+using System.Linq;
 
 namespace Rocket.Web.Controllers.UserRole
 {
     [RoutePrefix("roles")]
     public class RoleController : ApiController
     {
-        private readonly RoleService _roleManager;
+        private readonly IRoleService _roleManager;
 
-        public RoleController(RoleService roleManager)
+        public RoleController(IRoleService roleManager)
         {
             _roleManager = roleManager;
         }
@@ -74,7 +74,6 @@ namespace Rocket.Web.Controllers.UserRole
 
             await _roleManager.Update(roleId, roleName);
             return new StatusCodeResult(HttpStatusCode.NoContent, Request);
-
         }
 
         [HttpDelete]

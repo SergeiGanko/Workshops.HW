@@ -96,7 +96,7 @@ namespace Rocket.BL.Services.PersonalArea
         }
 
         /// <summary>
-        /// Удаляет музыкальный жанр у пользователя
+        /// Удаляет ТВ-жанр у пользователя
         /// </summary>
         /// <param name="id">Id пользователя</param>
         /// <param name="genre">Имя жанра для удаления</param>

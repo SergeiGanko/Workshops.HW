@@ -4,10 +4,11 @@ using Common.Logging;
 using Microsoft.AspNet.Identity;
 using Rocket.DAL.Common.UoW;
 using Rocket.DAL.Identity;
+using Rocket.BL.Common.Services;
 
 namespace Rocket.BL.Services.UserServices
 {
-    public class UserRoleManager : BaseService
+    public class UserRoleManager : BaseService, IUserRoleManager
     {
         private const string DefaultRoleId = "test"; // todo MP закинуть в хранилище дефолтроль когда будет конкретная база с guid
         private readonly ILog _logger;

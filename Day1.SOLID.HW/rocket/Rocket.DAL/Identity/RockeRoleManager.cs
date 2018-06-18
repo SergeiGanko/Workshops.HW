@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Rocket.DAL.Common.DbModels.Identity;
 
 namespace Rocket.DAL.Identity

@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net;
 using System.Web.Http;
 using System.Web.Http.Results;
-using Rocket.BL.Common.Models.User;
 using Rocket.BL.Common.Models.UserRoles;
-using Rocket.BL.Services.UserServices;
 using Swashbuckle.Swagger.Annotations;
+using Rocket.BL.Common.Services;
 
 namespace Rocket.Web.Controllers.UserRole
 {
     [RoutePrefix("permission")]
     public class PermissionController : ApiController
     {
-        private readonly PermissionService _permissionService;
+        private readonly IPermissionService _permissionService;
 
-        public PermissionController(PermissionService permissionService)
+        public PermissionController(IPermissionService permissionService)
         {
             _permissionService = permissionService;
         }
@@ -26,7 +21,7 @@ namespace Rocket.Web.Controllers.UserRole
         [Route("{id:int:min(1)}")]
         public IHttpActionResult GetPermissionById(string id)
         {
-            var model = _permissionService.GetPermissionByYser(id);
+            var model = _permissionService.GetPermissionByUser(id);
 
             return model == null ? (IHttpActionResult)NotFound() : Ok(model);
         }
@@ -35,7 +30,7 @@ namespace Rocket.Web.Controllers.UserRole
         [Route("GetPermissionByRole{id:int:min(1)}")]
         public IHttpActionResult GetPermissionByRole(string user)
         {
-            var model = _permissionService.GetPermissionByYser(user);
+            var model = _permissionService.GetPermissionByUser(user);
             return model == null ? (IHttpActionResult)NotFound() : Ok(model);
         }
 
@@ -43,15 +38,15 @@ namespace Rocket.Web.Controllers.UserRole
         [Route("all")]
         public IHttpActionResult GetAllPermissions()
         {
-            //_permissionService.Get(null, null, "Permission");
+            _permissionService.Get(null, null, "Permission");
             var model = _permissionService.GetAllPermissions();
             return model == null ? (IHttpActionResult)NotFound() : Ok(model);
         }
 
         [HttpPost]
         [SwaggerResponseRemoveDefaults]
-        //[SwaggerResponse(HttpStatusCode.BadRequest, "Data is not valid", typeof(string))]
-        //[SwaggerResponse(HttpStatusCode.Created, "New Permission description", typeof(Permission))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, "Data is not valid", typeof(string))]
+        [SwaggerResponse(HttpStatusCode.Created, "New Permission description", typeof(Permission))]
         public IHttpActionResult InsertPermission(Permission permission, string user)
         {
             if (permission == null)
@@ -63,7 +58,6 @@ namespace Rocket.Web.Controllers.UserRole
             return Created($"permission/{permission.PermissionId}", permission);
         }
 
-        /*
         [HttpPut]
         public IHttpActionResult UpdatePermission([FromBody]Permission permission, string user)
         {
@@ -76,18 +70,17 @@ namespace Rocket.Web.Controllers.UserRole
 
             return new StatusCodeResult(HttpStatusCode.NoContent, Request);
         }
-        */
-
+        
         [HttpDelete]
         [Route("{id:int:min(1)}")]
         public IHttpActionResult DeletePermissionById(Permission permission, string user)
         {
-            /*
+            
             if (_permissionService.GetById(permission.PermissionId.ToString()) == null)
             {
                 return BadRequest("The permission not exists");
             }
-            */
+            
 
             _permissionService.Delete(permission, user);
             return new StatusCodeResult(HttpStatusCode.Accepted, Request);

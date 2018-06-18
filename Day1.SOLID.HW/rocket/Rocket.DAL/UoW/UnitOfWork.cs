@@ -81,16 +81,16 @@ namespace Rocket.DAL.UoW
             IBaseRepository<TvSeriasEntity> tvSeriasRepository,
             IDbEmailRepository dbEmailRepository,
             IDbUserRepository dbUserRepository,
-            //IDbCountryRepository dbCountryRepository,
-            //IDbAccountLevelRepository dbAccountLevelRepository,
-            //IDbAccountStatusRepositary dbAccountStatusRepositary,
-            //IDbAddressRepositary dbAddressRepositary,
-            //IDbEmailAddressRepositary dbEmailAddressRepositary,
-            //IDbGenderRepository dbGenderRepository,
-            //IDbHowToCallRepository dbHowToCallRepository,
-            //IDbLanguageRepositary dbLanguageRepositary,
-            //IDbPhoneNumberRepository dbPhoneNumberRepository,
-            //IDbUserDetailRepository dbUserDetailRepository,
+            IDbCountryRepository dbCountryRepository,
+            IDbAccountLevelRepository dbAccountLevelRepository,
+            IDbAccountStatusRepositary dbAccountStatusRepositary,
+            IDbAddressRepositary dbAddressRepositary,
+            IDbEmailAddressRepositary dbEmailAddressRepositary,
+            IDbGenderRepository dbGenderRepository,
+            IDbHowToCallRepository dbHowToCallRepository,
+            IDbLanguageRepositary dbLanguageRepositary,
+            IDbPhoneNumberRepository dbPhoneNumberRepository,
+            IDbUserDetailRepository dbUserDetailRepository,
             IDbRoleRepository dbRoleRepository,
             IDbPermissionRepository dbPermissionRepository,
             IDbUserProfileRepository dbAuthorisedUserRepository,
@@ -122,16 +122,16 @@ namespace Rocket.DAL.UoW
             TvSeriasRepository = tvSeriasRepository;
             EmailRepository = dbEmailRepository;
             UserRepository = dbUserRepository;
-            //CountryRepository = dbCountryRepository;
-            //AccountLevelRepository = dbAccountLevelRepository;
-            //AccountStatusRepositary = dbAccountStatusRepositary;
-            //AddressRepositary = dbAddressRepositary;
-            //EmailAddressRepositary = dbEmailAddressRepositary;
-            //GenderRepository = dbGenderRepository;
-            //HowToCallRepository = dbHowToCallRepository;
-            //LanguageRepositary = dbLanguageRepositary;
-            //PhoneNumberRepository = dbPhoneNumberRepository;
-            //UserDetailRepository = dbUserDetailRepository;
+            CountryRepository = dbCountryRepository;
+            AccountLevelRepository = dbAccountLevelRepository;
+            AccountStatusRepositary = dbAccountStatusRepositary;
+            AddressRepositary = dbAddressRepositary;
+            EmailAddressRepositary = dbEmailAddressRepositary;
+            GenderRepository = dbGenderRepository;
+            HowToCallRepository = dbHowToCallRepository;
+            LanguageRepositary = dbLanguageRepositary;
+            PhoneNumberRepository = dbPhoneNumberRepository;
+            UserDetailRepository = dbUserDetailRepository;
             RoleRepository = dbRoleRepository;
             PermissionRepository = dbPermissionRepository;
             UserAuthorisedRepository = dbAuthorisedUserRepository;
